@@ -18,8 +18,8 @@ def getRich(n):
 
 
 def main():
-	input_f = open("GoldCoins.in", 'r')
-	output_f = open("GoldCoins.out", 'w')
+	input_f = open("GoldCoinsInput.txt", 'r')
+	output_f = open("GoldCoinsOutput.txt", 'w')
 
 	for n in input_f:
 		n = int(n)
