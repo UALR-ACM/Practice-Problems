@@ -12,6 +12,7 @@ public class problemI {
 		int num = Integer.parseInt(scan.nextLine());
 		while (num > 0) {
 			String line = scan.nextLine();
+			//If it's simon says, output line minus length of simon says.
 			if (line.startsWith("Simon says ")) 
 				System.out.println(line.substring("Simon says ".length()));
 			num--;

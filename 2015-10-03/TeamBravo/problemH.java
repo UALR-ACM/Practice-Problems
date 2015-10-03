@@ -12,6 +12,8 @@ public class problemH {
 		Scanner mrScan = new Scanner(System.in);
 		int num = Integer.parseInt(mrScan.nextLine());
 		while (num > 0) {
+
+			//Calculate sqrt and build matrix.
 			String input = mrScan.nextLine();
 			char[] cArray = input.toCharArray();
 			int length = input.length();
@@ -19,6 +21,7 @@ public class problemH {
 			int rTotal = (int) Math.pow(rSize, 2);
 			char[][] message = new char[rSize][rSize];
 			
+			//Build a matrix using ixj
 			for (int i = 0; i < message.length; i++) {
 				for (int j = 0; j < message[i].length; j++) {
 					int curPos = (i*rSize + j);
@@ -29,6 +32,7 @@ public class problemH {
 					}					
 				}
 			}
+			//Read the matrix back from bottom to top.
 			for (int i = 0; i < message.length; i++) {
 				for (int j = message.length-1; j >= 0; j--) {
 					if (message[j][i] == '*')
