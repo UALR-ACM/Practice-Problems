@@ -3,6 +3,8 @@
 #include <iostream>
 #include <tuple>
 
+// min_changes changes all instances of 010 to 011
+// and returns the number of changes made
 int min_changes(std::string s);
 
 int min_changes(std::string s) {
