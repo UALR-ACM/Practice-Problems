@@ -19,9 +19,9 @@ int min_changes(std::string s) {
 int main() {
   // read & return number/string as tuple
   auto input = [&]() -> std::tuple<int, std::string> {
-    auto i = int{};
+    int i;
     std::cin >> i;
-    auto str = std::string{};
+    std::string str;
     std::cin >> str;
     return std::make_tuple(i, str);
   };
