@@ -35,6 +35,7 @@ class myThread2(threading.Thread):
 
 calculations = {}
 threadLock = threading.Lock()
+# threadLock = threading.RLock()
 
 
 def calculateMass(threadName, delay, counter):
