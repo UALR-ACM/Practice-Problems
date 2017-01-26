@@ -4,7 +4,7 @@ import threading
 import time
 
 
-class myThread(threading.Thread):
+class myThread1(threading.Thread):
     def __init__(self, threadID, name, counter):
         threading.Thread.__init__(self)
         self.threadID = threadID
@@ -13,7 +13,23 @@ class myThread(threading.Thread):
 
     def run(self):
         print('Starting ' + self.name)
+        threadLock.acquire()
         calculateMass(self.name, self.counter, 5)
+        threadLock.release()
+        print('Exiting ' + self.name)
+
+
+class myThread2(threading.Thread):
+    def __init__(self, threadID, name):
+        threading.Thread.__init__(self)
+        self.threadID = threadID
+        self.name = name
+
+    def run(self):
+        print('Starting ' + self.name)
+        threadLock.acquire()
+        calculateDensity(self.name)
+        threadLock.release()
         print('Exiting ' + self.name)
 
 
@@ -27,11 +43,6 @@ def calculateMass(threadName, delay, counter):
         print('{0}: on iteration {1}'.format(threadName, i+1))
 
     # Mass has been calculated. Store final computation.
-    # If there are 3 active threads, we know the density 
-    # hasn't been calculated yet, so wait.
-    while threading.active_count() == 3:
-        time.sleep(0.5)
-
     calculations['mass'] = calculations['density'] / 2
     print('{} finished calculating mass...'.format(threadName))
 
@@ -45,11 +56,11 @@ def calculateDensity(threadName):
     print('{} finished calculating density...'.format(threadName))
 
 
-thread1 = myThread(1, 'Thread-1', 1)
-thread2 = threading.Thread(target=calculateDensity, name='Thread-2', args=['Thread-2'])
+thread1 = myThread1(1, 'Thread-1', 1)
+thread2 = myThread2(2, 'Thread-2')
 
 # Start threads
-thread1.start()
 thread2.start()
+thread1.start()
 
 print('Exiting main thread...')
