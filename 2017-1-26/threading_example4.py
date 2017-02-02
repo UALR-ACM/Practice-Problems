@@ -27,9 +27,8 @@ class myThread2(threading.Thread):
 
     def run(self):
         print('Starting ' + self.name)
-        threadLock.acquire()
-        calculateDensity(self.name)
-        threadLock.release()
+        with threadLock:
+            calculateDensity(self.name)
         print('Exiting ' + self.name)
 
 
